@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>2017 Adventskalender</title>
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Courgette|Roboto" rel="stylesheet">
+    <!-- stylesheet -->
+    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+</head>
+<body>
+    <div id="vue-root">
+        <div id="modal">
+            <h3>Hallo.</h3>
+        </div>
+        <div id="main-wrapper"></div>
+    </div>
+
+    <script src="https://unpkg.com/vue"></script>
+<script>
+    console.log(new Date().toDateString());
+    const ROOT_ELEMENT = 'main-wrapper';
+
+    //randomly generate all 24 fields
+    (function generate() {
+        var fields = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+        fields.sort(function () { return 0.5 - Math.random() });
+
+        fields.forEach(function (field) {
+            document.getElementById(ROOT_ELEMENT).innerHTML += '' +
+                '<div class="door-wrapper">' +
+                    '<div class="door-background">' +
+                        '<span @click="showPresent($event)" class="present">Öffne ' + field + '</span></div>' +
+                    '<div v-bind:class="{ oldDate: isOld(' + field + ') }" @click="open($event)" class="firstdoor">'
+                        + field + '' +
+                    '</div>' +
+                '</div>';
+        });
+    })();
+
+    var app = new Vue({
+        el: '#vue-root',
+        data: {},
+        methods: {
+            open: function (event) {
+                var classList = event.target.classList;
+
+                if (classList.contains('oldDate')) {
+                    classList.add('doorOpen', 'hide-text');
+                } else if(classList.contains('firstdoor')) {
+                    var parentClassList = event.target.parentElement.classList;
+
+                    if (parentClassList.contains('animated')) {
+                        return;
+                    }
+
+                    parentClassList.add('animated', 'shake');
+                    setTimeout(function () {
+                        parentClassList.remove('animated', 'shake');
+                    }, 1500);
+                }
+            },
+            isOld: function (day) {
+                day = parseInt(day);
+                return day <= new Date().getUTCDate();
+            },
+            showPresent: function (event) {
+                console.log(event.target);
+            }
+        }
+    });
+</script>
+</body>
+</html>
