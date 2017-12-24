@@ -80,3 +80,7 @@
     top: 30%;
     left: 40%;
 }
+
+.hideModal {
+    display: none;
+}
