@@ -11,7 +11,7 @@
 </head>
 <body>
     <div id="vue-root">
-        <div id="modal">
+        <div v-bind:class="{ hideModal: isModalVisible }" id="modal">
             <h3>Hallo.</h3>
         </div>
         <div id="main-wrapper"></div>
@@ -41,7 +41,9 @@
 
     var app = new Vue({
         el: '#vue-root',
-        data: {},
+        data: {
+            isModalVisible: true
+        },
         methods: {
             open: function (event) {
                 var classList = event.target.classList;
@@ -66,7 +68,9 @@
                 return day <= new Date().getUTCDate();
             },
             showPresent: function (event) {
+                //TODO: implement logic
                 console.log(event.target);
+                this.isModalVisible = !this.isModalVisible;
             }
         }
     });
