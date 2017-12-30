@@ -89,3 +89,13 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+
+#loading-screen {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    padding-top: 35%;
+    text-align: center;
+    background-color: #c66e2f;
+    z-index: 200;
+}

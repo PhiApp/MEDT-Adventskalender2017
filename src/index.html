@@ -11,6 +11,7 @@
 </head>
 <body>
     <div id="vue-root">
+        <div v-bind:class="{ hideModal: this.isLoaded }" id="loading-screen">loading...</div>
         <div v-bind:class="{ hideModal: !isModalVisible }" id="modal">
             <h3>Inhalt</h3>
             <div id="modal-desc">
@@ -69,7 +70,8 @@
                 currentValue: undefined
             },
             isModalVisible: false,
-            lastDoorNum: -1
+            lastDoorNum: -1,
+            isLoaded: false
         },
         methods: {
             open: function (event) {
@@ -121,18 +123,20 @@
             loadImage: function () {
                 document.getElementsByTagName('html')[0].setAttribute('style', '--cBg: url("' + this.modal.currentValue + '");');
             },
-            openLink: function (link) {
-                if (link === null) {
-                    console.warn('something went wrong.');
-                    return;
+            openLink: function () {
+                if (this.isModalVisible) {
+                    window.open(this.modal.currentValue, '_blank');
                 }
-                window.open(link, '_blank');
             },
             playSound: function (link) {
-                new Audio(link).play();
+                if (this.isModalVisible) {
+                    new Audio(link).play();
+                }
             }
         }
     });
+
+    app.isLoaded = true;
 </script>
 </body>
 </html>
