@@ -11,14 +11,34 @@
 </head>
 <body>
     <div id="vue-root">
-        <div v-bind:class="{ hideModal: isModalVisible }" id="modal">
-            <h3>Hallo.</h3>
+        <div v-bind:class="{ hideModal: !isModalVisible }" id="modal">
+            <h3>Inhalt</h3>
+            <div id="modal-desc">
+                <p> {{ this.modal.currentDescription}} </p>
+                <br>
+                <p v-if="this.modal.currentType === 0"></p>
+                <p v-if="this.modal.currentType === 1">
+                  <div id="modal-image" height="230px" width="300px"></div>
+                {{ this.loadImage(this.modal.currentValue) }}
+                </p>
+                <p v-if="this.modal.currentType === 2" style="padding: 10px"> {{ this.modal.currentValue }} </p>
+                <p v-if="this.modal.currentType === 3"> SOUND </p>
+
+                <!--<p v-if> Something went wrong. type is: {{ this.modal.currentType }} </p>-->
+            </div>
+            <div id="modal-content">
+
+            </div>
         </div>
         <div id="main-wrapper"></div>
     </div>
 
+    <script src="presents.js"></script>
     <script src="https://unpkg.com/vue"></script>
 <script>
+    /*
+    * not vuejs related stuff which should be executed before invoking vuejs
+    */
     console.log(new Date().toDateString());
     const ROOT_ELEMENT = 'main-wrapper';
 
@@ -39,10 +59,19 @@
         });
     })();
 
+    /*
+     * vuejs related stuff
+     */
     var app = new Vue({
         el: '#vue-root',
         data: {
-            isModalVisible: true
+            modal: {
+                currentType: undefined,
+                currentDescription: undefined,
+                currentValue: undefined
+            },
+            isModalVisible: false,
+            lastDoorNum: -1
         },
         methods: {
             open: function (event) {
@@ -50,6 +79,7 @@
 
                 if (classList.contains('oldDate')) {
                     classList.add('doorOpen', 'hide-text');
+
                 } else if(classList.contains('firstdoor')) {
                     var parentClassList = event.target.parentElement.classList;
 
@@ -63,14 +93,39 @@
                     }, 1500);
                 }
             },
+
             isOld: function (day) {
                 day = parseInt(day);
                 return day <= new Date().getUTCDate();
             },
+
             showPresent: function (event) {
-                //TODO: implement logic
-                console.log(event.target);
+                //var doorNum = parseInt(event.target.innerText.replace('Öffne ', '')) -1;
+                var doorNum = parseInt(event.target.innerText.replace(/[^0-9]/g, '')) -1;
+
+                console.log(presents[doorNum]);
+
+                if (presents[doorNum].description === undefined) {
+                    console.warn(doorNum + " desc is undef | " + presents[doorNum].description);
+                }
+
+                if (presents[doorNum].type === undefined) {
+                    console.warn(doorNum + " type is undef | " + presents[doorNum].type);
+                }
+
+                if (presents[doorNum].value === undefined) {
+                    console.warn(doorNum + " value is undef | " + presents[doorNum].value);
+                }
+
+                this.modal.currentDescription = presents[doorNum].description;
+                this.modal.currentValue = presents[doorNum].value;
+                this.modal.currentType = presents[doorNum].type;
+
                 this.isModalVisible = !this.isModalVisible;
+            },
+            loadImage: function (link) {
+                console.log('hey!');
+                var clazz = '#modal-bg { background-image: url("' + link + '"); }';
             }
         }
     });
