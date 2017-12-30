@@ -8,6 +8,14 @@
     padding: 0;
 }
 
+body {
+    width: 100%;
+    background-image: url("https://wallpaper.wiki/wp-content/uploads/2017/05/Christmas-Wallpaper-Desktop-HD.jpg");
+    background-size: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
 .door {
     height: 150px;
     width: 150px;
@@ -88,6 +96,10 @@
     background-image: var(--cBg);
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+#main-wrapper {
+    margin-left: 13%;
 }
 
 #loading-screen {
