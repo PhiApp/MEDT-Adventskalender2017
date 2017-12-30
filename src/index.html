@@ -17,7 +17,7 @@
                 <p> {{ this.modal.currentDescription}} </p>
                 <br>
                 <p v-if="this.modal.currentType === 0">
-                    {{ openLink(this.modal.currentValue) }}
+                    {{ openLink() }}
                     (wenn kein neuer Tab aufgeht, müssen Sie es in den Einstellungen erlauben.)
                 </p>
                 <p v-if="this.modal.currentType === 1">
@@ -98,10 +98,7 @@
             },
 
             showPresent: function (event) {
-                //var doorNum = parseInt(event.target.innerText.replace('Öffne ', '')) -1;
                 var doorNum = parseInt(event.target.innerText.replace(/[^0-9]/g, '')) -1;
-
-                console.log(presents[doorNum]);
 
                 if (presents[doorNum].description === undefined) {
                     console.warn(doorNum + " desc is undef | " + presents[doorNum].description);
@@ -121,9 +118,8 @@
 
                 this.isModalVisible = !this.isModalVisible;
             },
-            loadImage: function (link) {
-                console.log('hey!');
-                document.documentElement.style.setProperty('--cBg: ', 'url("' + link + '");');
+            loadImage: function () {
+                document.getElementsByTagName('html')[0].setAttribute('style', '--cBg: url("' + this.modal.currentValue + '");');
             },
             openLink: function (link) {
                 if (link === null) {
