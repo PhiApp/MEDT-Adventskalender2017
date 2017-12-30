@@ -1,8 +1,5 @@
 :root {
-    /* can be changed */
-    --tiles-per-row: 6;
-    /* don't touch this variable */
-    --tile-size: 0;
+    --cBg: url("http://maxpixel.freegreatpicture.com/static/photo/1x/Http-News-Html-Error-404-Was-Not-Found-Page-1349562.png");
 }
 
 * {
@@ -75,7 +72,7 @@
     height: 300px;
     width: 300px;
     background-color: beige;
-    position: absolute;
+    position: fixed;
     z-index: 100;
     top: 30%;
     left: 40%;
@@ -83,4 +80,12 @@
 
 .hideModal {
     display: none;
+}
+
+#modal-image {
+    height: 230px;
+    width: 300px;
+    background-image: var(--cBg);
+    background-repeat: no-repeat;
+    background-size: contain;
 }
