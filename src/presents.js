@@ -9,22 +9,22 @@ var presents = [
     {
         'type': PresentType.IMAGE,
         "description": 'Ein schönes Bild.',
-        'value': 'https://www.ibkinfo.at/media/3997/weihnachten-c-fotolia-2.jpg?anchor=center&mode=crop&width=PresentType.IMAGEPresentType.LINKPresentType.LINKPresentType.LINK&height=57PresentType.LINK&rnd=PresentType.IMAGE3PresentType.LINK95337234PresentType.LINKPresentType.LINKPresentType.LINKPresentType.LINKPresentType.LINKPresentType.LINKPresentType.LINK'
+        'value': 'https://www.ibkinfo.at/media/3997/weihnachten-c-fotolia-2.jpg?anchor=center&mode=crop&width=1000&height=570&rnd=130953372340000000'
     },
     {
         'type': PresentType.IMAGE,
         "description": 'Ein schöner Adventkranz.',
-        'value': 'https://cf.katholisch.de/fotolia_PresentType.IMAGE733892PresentType.LINK_adventskranz-PresentType.IMAGE.jpg'
+        'value': 'https://cf.katholisch.de/fotolia_17338920_adventskranz-1.jpg'
     },
     {
         'type': PresentType.IMAGE,
         "description": 'Den kenn ich doch?',
-        'value': 'http://www.opixx.org/images/for-free/details/holidays_3PresentType.LINK/weihnachtsmann_grafik_2PresentType.LINKPresentType.IMAGE3PresentType.IMAGE2PresentType.IMAGE2_2PresentType.LINK27787PresentType.LINK8PresentType.IMAGE.png'
+        'value': 'http://www.opixx.org/images/for-free/details/holidays_30/weihnachtsmann_grafik_20131212_2027787081.png'
     },
     {
         'type': PresentType.IMAGE,
         "description": 'Schön formartiertes php',
-        'value': 'https://thepracticaldev.s3.amazonaws.com/i/2PresentType.IMAGEsb87l3qafmxPresentType.LINKas4PresentType.LINKcu.png'
+        'value': 'https://thepracticaldev.s3.amazonaws.com/i/21sb87l3qafmx0as40cu.png'
     },
     {
         'type': PresentType.IMAGE,
@@ -34,7 +34,7 @@ var presents = [
     {
         'type': PresentType.IMAGE,
         "description": 'Geschenke :D',
-        'value': 'http://humanepursuits.com/wp-content/uploads/2PresentType.LINKPresentType.IMAGE3/PresentType.IMAGEPresentType.IMAGE/christmaspresents.jpg'
+        'value': 'http://humanepursuits.com/wp-content/uploads/2013/11/christmaspresents.jpg'
     },
     {
         'type': PresentType.LINK,
@@ -49,7 +49,7 @@ var presents = [
     {
         'type': PresentType.LINK,
         "description": 'Anleitung für leckeren Vanillekekse',
-        'value': 'https://www.gutekueche.at/suesse-vanillekipferl-rezept-764PresentType.IMAGE'
+        'value': 'https://www.gutekueche.at/suesse-vanillekipferl-rezept-7641'
     },
     {
         'type': PresentType.LINK,
@@ -114,22 +114,22 @@ var presents = [
     {
         'type': PresentType.SOUND,
         "description": 'Weihnachtsglocken sound',
-        'value': 'http://soundbible.com/mp3/Sleigh%2PresentType.LINKBells%2PresentType.LINKRinging-SoundBible.com-PresentType.IMAGE89PresentType.LINKPresentType.IMAGEPresentType.LINK2PresentType.LINK65.mp3'
+        'value': 'http://soundbible.com/mp3/Sleigh Bells Ringing-SoundBible.com-1890102065.mp3'
     },
     {
         'type': PresentType.SOUND,
         "description": 'Schneesturm sound',
-        'value': 'http://soundbible.com/mp3/Wind-Mark_DiAngelo-PresentType.IMAGE94PresentType.LINK2856PresentType.IMAGE5.mp3'
+        'value': 'http://soundbible.com/mp3/Wind-Mark_DiAngelo-1940285615.mp3'
     },
     {
         'type': PresentType.SOUND,
         "description": 'Schneesturm sound',
-        'value': 'http://soundbible.com/mp3/Wind-Mark_DiAngelo-PresentType.IMAGE94PresentType.LINK2856PresentType.IMAGE5.mp3'
+        'value': 'http://soundbible.com/mp3/Wind-Mark_DiAngelo-1940285615.mp3'
     }
 ];
 
 (function shuffle(sourceArray) {
-    for (var i = PresentType.LINK; i < sourceArray.length - PresentType.IMAGE; i++) {
+    for (var i = 0; i < sourceArray.length - 1; i++) {
         var j = i + Math.floor(Math.random() * (sourceArray.length - i));
 
         var temp = sourceArray[j];

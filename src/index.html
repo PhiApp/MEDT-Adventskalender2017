@@ -16,18 +16,16 @@
             <div id="modal-desc">
                 <p> {{ this.modal.currentDescription}} </p>
                 <br>
-                <p v-if="this.modal.currentType === 0"></p>
+                <p v-if="this.modal.currentType === 0">
+                    {{ openLink(this.modal.currentValue) }}
+                    (wenn kein neuer Tab aufgeht, müssen Sie es in den Einstellungen erlauben.)
+                </p>
                 <p v-if="this.modal.currentType === 1">
-                  <div id="modal-image" height="230px" width="300px"></div>
-                {{ this.loadImage(this.modal.currentValue) }}
+                    <div v-show="this.modal.currentType === 1" id="modal-image" height="230px" width="300px"></div>
+                    {{ this.loadImage(this.modal.currentValue) }}
                 </p>
                 <p v-if="this.modal.currentType === 2" style="padding: 10px"> {{ this.modal.currentValue }} </p>
-                <p v-if="this.modal.currentType === 3"> SOUND </p>
-
-                <!--<p v-if> Something went wrong. type is: {{ this.modal.currentType }} </p>-->
-            </div>
-            <div id="modal-content">
-
+                <p v-if="this.modal.currentType === 3"> {{ playSound(this.modal.currentValue) }} Falls kein Sound Wiedergegeben wird, bitte Lautstärke erhöhen. </p>
             </div>
         </div>
         <div id="main-wrapper"></div>
@@ -125,7 +123,17 @@
             },
             loadImage: function (link) {
                 console.log('hey!');
-                var clazz = '#modal-bg { background-image: url("' + link + '"); }';
+                document.documentElement.style.setProperty('--cBg: ', 'url("' + link + '");');
+            },
+            openLink: function (link) {
+                if (link === null) {
+                    console.warn('something went wrong.');
+                    return;
+                }
+                window.open(link, '_blank');
+            },
+            playSound: function (link) {
+                new Audio(link).play();
             }
         }
     });
